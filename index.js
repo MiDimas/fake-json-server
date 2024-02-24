@@ -1,6 +1,7 @@
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
+const os = require('os');
 
 const middlewares = jsonServer.defaults();
 
@@ -41,5 +42,7 @@ server.use((req, res, next) => {
 server.use(router);
 
 server.listen(8000, () => {
-    console.log('Сервер запущен на порту 8000');
+    console.log(`Сервер запущен на порту 8000, ${Object.values(os.networkInterfaces()).flat()
+    .find(iface => iface.family === 'IPv4' && !iface.internal)
+    ?.address}`);
 });
