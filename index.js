@@ -42,7 +42,5 @@ server.use((req, res, next) => {
 server.use(router);
 
 server.listen(8000, () => {
-    console.log(`Сервер запущен на порту 8000, ${Object.values(os.networkInterfaces()).flat()
-    .find(iface => iface.family === 'IPv4' && !iface.internal)
-    ?.address}`);
+    console.log(`Сервер запущен на порту 8000`);
 });
