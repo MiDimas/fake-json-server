@@ -9,6 +9,7 @@ const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
+
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
@@ -38,6 +39,10 @@ server.use((req, res, next) => {
     }
     next();
 });
+
+server.use(jsonServer.rewriter({
+    '/server/*': '/$1'
+}))
 
 server.use(router);
 
